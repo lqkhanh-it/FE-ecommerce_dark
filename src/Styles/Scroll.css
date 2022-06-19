@@ -1,0 +1,18 @@
+.scroll-top-btn-container{
+    position: fixed;
+    top: 91%;
+    right: 0;
+    border: 1px solid;
+    border-radius: 2rem;
+    padding: 5px;
+}
+.scroll-top-btn-container-hover{
+    position: fixed;
+    top: 91%;
+    right: 0;
+    border: 1px solid;
+    border-radius: 2rem;
+    padding: 5px;
+    background: black;
+    color: #fff;
+}
