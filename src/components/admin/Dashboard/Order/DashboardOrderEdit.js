@@ -46,14 +46,10 @@ export default function DashboardOrderCreate(props) {
               axios
                 .get(`http://localhost:4000/products/${item.id}`)
                 .then((res) => {
-                  console.log("RES ", res);
                   setProductList([]);
 
                   var original_data = JSON.parse(JSON.stringify(res));
                   const data = original_data.data;
-                  console.log("DATA", data);
-                  console.log("ORIGIN ", original_data);
-                  console.log("ITEM ", item);
                   if (data) {
                     data["count"] = item?.amount;
                     setProductList((productList) => [...productList, data]);
@@ -113,7 +109,6 @@ export default function DashboardOrderCreate(props) {
     event.preventDefault();
     var listOrder = [];
     var total = 0;
-    console.log(productList);
     for (let i in productList) {
       const data = {
         id: productList[i]._id,
@@ -345,7 +340,6 @@ export default function DashboardOrderCreate(props) {
               >
                 {productList &&
                   productList.map((item, index) => {
-                    console.log(productList.length);
                     return (
                       <div key={index} className="order-list-item">
                         <img

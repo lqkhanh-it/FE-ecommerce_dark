@@ -1046,7 +1046,6 @@ select {
   width: 80%;
   left: 20%;
   height: 100vh;
-  background-color: rgba(1, 1, 1, 0.7);
   position: fixed;
   z-index: 13;
   top: 0;

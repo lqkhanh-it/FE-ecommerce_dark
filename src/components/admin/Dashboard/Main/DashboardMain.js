@@ -108,46 +108,47 @@ export default function DashboardMain() {
           new Date(res.data[i].orderDate).getFullYear() === currentYear
         ) {
           currentOrder.push(res.data[i]);
-          currentTotalIncome += res.data[i].orderTotal;
+          currentTotalIncome += parseFloat(res.data[i].orderTotal);
         }
         if (
           new Date(res.data[i].orderDate).getMonth() + 1 === lastMonth &&
           new Date(res.data[i].orderDate).getFullYear() === lastYear
         ) {
           lastMonthOrder.push(res.data[i]);
-          lastCurrentTotalIncome += res.data[i].orderTotal;
+          lastCurrentTotalIncome += parseFloat(res.data[i].orderTotal);
         }
         for (let j in res.data[i].orderList) {
           if (
             new Date(res.data[i].orderDate).getMonth() + 1 === currentMonth &&
             new Date(res.data[i].orderDate).getFullYear() === currentYear
           ) {
-            currentTotalSale += res.data[i].orderList[j].amount;
+            currentTotalSale += parseFloat(res.data[i].orderList[j].amount);
           }
           if (
             new Date(res.data[i].orderDate).getMonth() + 1 === lastMonth &&
             new Date(res.data[i].orderDate).getFullYear() === lastYear
           ) {
-            lastCurrentTotalSale += res.data[i].orderList[j].amount;
+            lastCurrentTotalSale += parseFloat(res.data[i].orderList[j].amount);
           }
         }
       }
-
       if (currentOrder.length >= lastMonthOrder.length) {
         setOrderMonthPercent({
           percent: Math.ceil(
-            ((currentOrder.length - lastMonthOrder.length) /
+            (((currentOrder.length - lastMonthOrder.length) /
               lastMonthOrder.length) *
-              100
+              100) |
+              0
           ),
           isDecrease: true,
         });
       } else {
         setOrderMonthPercent({
           percent: Math.ceil(
-            ((lastMonthOrder.length - currentOrder.length) /
+            (((lastMonthOrder.length - currentOrder.length) /
               lastMonthOrder.length) *
-              100
+              100) |
+              0
           ),
           isDecrease: false,
         });
@@ -155,8 +156,10 @@ export default function DashboardMain() {
       if (currentTotalSale >= lastCurrentTotalSale) {
         setSaleMonthPercent({
           percent: Math.ceil(
-            ((currentTotalSale - lastCurrentTotalSale) / lastCurrentTotalSale) *
-              100
+            (((currentTotalSale - lastCurrentTotalSale) /
+              lastCurrentTotalSale) *
+              100) |
+              0
           ),
           isDecrease: true,
         });
@@ -172,9 +175,10 @@ export default function DashboardMain() {
       if (currentTotalIncome >= lastCurrentTotalIncome) {
         setIncomeMonthPercent({
           percent: Math.ceil(
-            ((currentTotalIncome - lastCurrentTotalIncome) /
+            (((currentTotalIncome - lastCurrentTotalIncome) /
               lastCurrentTotalIncome) *
-              100
+              100) |
+              0
           ),
           isDecrease: true,
         });
